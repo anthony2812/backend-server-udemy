@@ -23,12 +23,24 @@ mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB', (err, res) =
 });
 
 //Importar Rutas
+var imagenesRoutes = require('./routes/imagenes');
+var medicoRoutes = require('./routes/medicos');
+var hospitalRoutes = require('./routes/hospitales')
 var appRoutes = require('./routes/app');
 var usuarioRoutes = require('./routes/usuario');
 var loginRoutes = require('./routes/login');
+var busquedaRoutes = require('./routes/busqueda');
+var uploadRoutes = require('./routes/upload');
+
 //Rutas
+
+app.use('/busqueda', busquedaRoutes);
+app.use('/medico', medicoRoutes);
+app.use('/hospital', hospitalRoutes);
 app.use('/usuario', usuarioRoutes); // en realidad esto es un middleware
 app.use('/login', loginRoutes); // en realidad esto es un middleware
+app.use('/upload', uploadRoutes);
+app.use('/imagenes', imagenesRoutes);
 app.use('/', appRoutes); // en realidad esto es un middleware
 
 
